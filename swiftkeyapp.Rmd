@@ -1,0 +1,51 @@
+---
+title: "Swiftkey Text Prediction Application"
+author: "Ariful Mondal"
+date: "29 December 2017"
+output: ioslides_presentation
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Introduction
+
+This is a sample shiny app to predict text which is a data science capstone project from ["Data Science Specialization"](https://www.coursera.org/specializations/jhu-data-science) Learning path on [Coursera](https://www.coursera.org) by [Johns Hopkins University](https://www.jhu.edu/). 
+
+This project is supported by [SwiftKey](https://swiftkey.com/en), corporate partner in this capstone, builds a smart keyboard that makes it easier for people to type on their mobile devices.
+
+## Interactive Plot
+
+```{r eruptions}
+inputPanel(
+  selectInput("n_breaks", label = "Number of bins:",
+              choices = c(10, 20, 35, 50), selected = 20),
+  
+  sliderInput("bw_adjust", label = "Bandwidth adjustment:",
+              min = 0.2, max = 2, value = 1, step = 0.2)
+)
+
+renderPlot({
+  hist(faithful$eruptions, probability = TRUE, breaks = as.numeric(input$n_breaks),
+       xlab = "Duration (minutes)", main = "Geyser eruption duration")
+  
+  dens <- density(faithful$eruptions, adjust = input$bw_adjust)
+  lines(dens, col = "blue")
+})
+```
+
+## Bullets
+
+- Bullet 1
+- Bullet 2
+- Bullet 3
+
+## R Output
+
+```{r cars}
+summary(cars)
+```
+
+
